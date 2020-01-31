@@ -27,17 +27,17 @@
         - read [--body] [--title]
      
 
-#### Create handler functions for commands created above: 
+#### Create handler functions in `handler.js` for commands created above: 
     - create (title, body) -> message
     - remove (title) -> message
     - list () -> all notes
     - read (title) -> title, body
 Use builtin [fs](https://nodejs.org/api/fs.html#fs_fs_readfilesync_path_options) library
 store notes in `notes.json` file:
-```json 
+```json
     [
-        {"title": "title", body: "body"},
-        {"title": "title", body: "body"}
+        {"title": "title", "body": "body"},
+        {"title": "title", "body": "body"}
     ]
 ```
 

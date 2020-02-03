@@ -1,0 +1,15 @@
+{
+  "name": "01-module-system",
+  "version": "1.0.0",
+  "description": "- create a new file `helper.js`\r     - create function getNotes that returns \"Your notes ...\"\r     - load and call that function printing message to console\r #### Install Chalk and color message\r     - create file `app.js`\r     - install chalk from npm\r     - load it in app\r     - load function getNotes from `helper.js`\r     - add success message in green",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "yargs": "^15.1.0"
+  }
+}

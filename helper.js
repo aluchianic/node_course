@@ -2,35 +2,28 @@ const fs = require('fs')
 const chalk = require('chalk')
 
 function getNotes() {
-    const data = fs.readFileSync('notes.json')
-    const content = data.toString()
-
     try {
-       const jsonData = JSON.parse(content)
-       return jsonData
+        const data = fs.readFileSync('notes.json')
+        const content = data.toString()
+        return JSON.parse(content)
     } catch (error) {
-       return []
+        return []
     }
 }
 
-function saveNotes(data) {  
+function saveNotes(data) {
     const dataFile = JSON.stringify(data)
-    fs.writeFileSync('notes.json', dataFile)  
+    fs.writeFileSync('notes.json', dataFile)
 }
 
 function addNotes(title, body) {
-    const notes = getNotes() 
-
-    const duplicates = notes.find(elem => {
-        if (elem.title === title) {
-            return true
-        }
-    })
+    const notes = getNotes()
+    const duplicates = notes.find(element => element.title === title)
 
     if (duplicates) {
         console.log('error')
     } else {
-        notes.push({title, body})
+        notes.push({ title, body })
         saveNotes(notes)
     }
 }
@@ -49,23 +42,25 @@ function readNotes(title) {
 function listNotes() {
     const notes = getNotes()
 
-    notes.forEach(elem => {
-        console.log(elem.body, elem.title)
+    notes.forEach(element => {
+        console.log(element.body, element.title)
     })
 }
 
 function removeNotes(title) {
     const notes = getNotes()
+    const notesToKeep = notes.filter(element => element.title !== title)
 
-    const array = notes.filter(element => {
-        if (element.title !== title) {
-            return true
-        }
-    })
-
-    if (notes.length !== array.length) {
-        saveNotes(array)
-    } 
+    if (notes.length !== notesToKeep.length) {
+        saveNotes(notesToKeep)
+    }
 }
 
-module.exports = { removeNotes: removeNotes, listNotes : listNotes, readNotes : readNotes, addNotes : addNotes, getNotes : getNotes, saveNotes : saveNotes }
+module.exports = {
+    removeNotes,
+    listNotes,
+    readNotes,
+    addNotes,
+    getNotes,
+    saveNotes
+}

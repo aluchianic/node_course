@@ -30,7 +30,7 @@ const addOption2= {
         }
     },
     handler(args) {
-        console.log(args)
+       help.removeNotes(args.title)
     }
 }
 const addOption3={
@@ -40,7 +40,7 @@ const addOption3={
 
             },
             handler(args) {
-                console.log(args)
+                help.listNotes()
             }
 };
 const addOption4={
@@ -53,7 +53,7 @@ const addOption4={
         }
     },
     handler(args) {
-        console.log(args)
+        help.readNotes(args.title)
     }
 }
 yargs.command(addOption1)

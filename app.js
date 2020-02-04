@@ -37,7 +37,6 @@ const removeOptions = {
 const listOptions = {
     command: 'list',
     describe: 'list Note',
-
     handler(argv) {
         Helper.listNotes()
     }

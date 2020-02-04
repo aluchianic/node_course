@@ -3,8 +3,7 @@ const chalk = require('chalk')
 
 function getNotes() {
     try {
-        const data = fs.readFileSync('notes.json')
-        const content = data.toString()
+        const content = fs.readFileSync('notes.json').toString()
         return JSON.parse(content)
     } catch (error) {
         return []
@@ -12,8 +11,7 @@ function getNotes() {
 }
 
 function saveNotes(data) {
-    const dataFile = JSON.stringify(data)
-    fs.writeFileSync('notes.json', dataFile)
+    fs.writeFileSync('notes.json', JSON.stringify(data))
 }
 
 function addNotes(title, body) {

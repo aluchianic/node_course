@@ -1,13 +1,12 @@
 const fs = require('fs')
-const clr = require ("chalk")
+const clr = require("chalk")
 
 const getNotes = () => {
-    try{
-const data = fs.readFileSync('notes.json')
-const content = data.toString()
-const jsonData=JSON.parse(content)
-return jsonData 
-    }catch(err){
+    try {
+        const data = fs.readFileSync('notes.json')
+        const content = data.toString()
+        return JSON.parse(content)
+    } catch (err) {
         console.log(clr.red("ERROR! Invalid input format in 'notes.json'"))
         return []
     }
@@ -15,41 +14,40 @@ return jsonData
 
 const saveNotes = (object) => {
     const jsonObject = JSON.stringify(object)
-    fs.writeFileSync('notes.json',jsonObject)
+    fs.writeFileSync('notes.json', jsonObject)
 }
 
-const addNotes = (title, body) => { 
-    const jsonData = getNotes()
-    if(!jsonData.find(x=>{if(x.title===title) return true})){
-        jsonData.push({"title": title, "body": body})
-        saveNotes(jsonData)
-}
-else{
-    console.log('Title already exists')
-}
+const addNotes = (title, body) => {
+    const notes = getNotes()
+    if (!notes.find(x => x.title === title)) {
+        notes.push({ "title": title, "body": body })
+        saveNotes(notes)
+    } else {
+        console.log('Title already exists')
+    }
 }
 
 const readNotes = (title) => {
-    const jsonData = getNotes()
-    const y = jsonData.find(x=>{if(x.title===title) return true})
-    if(y){
+    const notes = getNotes()
+    const y = notes.find(x => x.title === title)
+    if (y) {
         console.log(clr.yellow(y.title) + ' ' + clr.greenBright(y.body))
-    }
-    else console.log(clr.red('There is no such title'))
+    } else console.log(clr.red('There is no such title'))
 }
 
 const listNotes = () => {
-    const jsonData = getNotes()
-    jsonData.forEach(element => {
+    const notes = getNotes()
+    notes.forEach(element => {
         console.log(clr.yellowBright(element.title))
     });
 }
 
 const removeNotes = (title) => {
-    const jsonData = getNotes()
-    const jsonDataModified = jsonData.filter(x=>x.title!==title)
-    if(jsonData.length===jsonDataModified.length)console.log(clr.red("There is no such title"))
-    saveNotes(jsonDataModified)
+    const notes = getNotes()
+    const notesModified = notes.filter(x => x.title !== title)
+    if (notes.length === notesModified.length) 
+        console.log(clr.red("There is no such title"))
+    saveNotes(notesModified)
 }
 module.exports = {
     getNotes,

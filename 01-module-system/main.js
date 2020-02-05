@@ -1,8 +1,12 @@
+const yargs = require('yargs')
+const {
+    addNotes,
+    readNotes,
+    listNotes,
+    removeNotes
+} = require('./helpers')
 
-const yargs=require('yargs')
-const Helpers = require ('./helpers')
-const {addNotes} = require('./helpers')
-const fs= require('fs')
+const fs = require('fs')
 const read = {
     command: 'read',
     describe: 'Reads notes',
@@ -46,7 +50,7 @@ const create = {
         }
     },
     handler(argv) {
-        addNotes(argv.title,argv.body)
+        Helpers.addNotes(argv.title, argv.body)
     }
 }
 const list = {

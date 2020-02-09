@@ -18,7 +18,7 @@ const read = {
         }
     },
     handler(argv) {
-        Helpers.readNotes(argv.title)
+        readNotes(argv.title)
     }
 }
 const remove = {
@@ -32,7 +32,7 @@ const remove = {
         }
     },
     handler(argv) {
-        Helpers.removeNotes(argv.title)
+        removeNotes(argv.title)
     }
 }
 const create = {
@@ -50,7 +50,7 @@ const create = {
         }
     },
     handler(argv) {
-        Helpers.addNotes(argv.title, argv.body)
+        addNotes(argv.title, argv.body)
     }
 }
 const list = {
@@ -59,7 +59,7 @@ const list = {
     builder: {
     },
     handler(argv) {
-        Helpers.listNotes()
+        listNotes()
     }
 }
 

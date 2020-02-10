@@ -12,8 +12,8 @@ const getGeoData = (location, callback) => {
         if (info.message)
             return callback({ error: true, message: info.message }, null)
 
-        if (info.features.length === 0)
-            return callback({ error: true, message: "No data about " + location }, null)
+        if (info.features)
+            return callback({ error: true, message: `No data about ${location}` }, null)
 
         const coord = {
             longitude: info.features[0].center[0],

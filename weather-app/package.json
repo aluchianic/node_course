@@ -1,0 +1,14 @@
+{
+  "name": "weather_app",
+  "version": "1.0.0",
+  "description": "App for weather",
+  "main": "app.js",
+  "author": "Maks",
+  "license": "MIT",
+  "scripts": {
+    "app": "node app.js"
+  },
+  "dependencies": {
+    "request": "^2.88.0"
+  }
+}

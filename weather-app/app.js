@@ -1,12 +1,15 @@
 const { getGeoData } = require('./helpers/geoData')
 const { getWeather } = require('./helpers/weatherData')
 
-const location = "belarus"
+const location = ""
 
-getGeoData(location, (err, data) => {
+getGeoData(location, (err, geoData) => {
     if (err) return console.log(err.message)
-    getWeather(data.latitude, data.longitude, (err, data1) => {
+
+    const { latitude, longitude, location } = geoData
+
+    getWeather(latitude, longitude, (err, weatherData) => {
         if (err) return console.log(err.message)
-        console.log(`\nLocation: ${data.location} \n ${data1}`)
+        console.log(`\nLocation: ${location} \n ${weatherData}`)
     })
 })

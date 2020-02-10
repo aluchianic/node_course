@@ -22,8 +22,9 @@ const getWeather = (latitude, longitude, callback) => {
             precipProbability: info.daily.data[0].precipProbability,
             precipType: info.daily.data[0].precipType
         }
-
-        return callback(null, `\nWeather for today: \n${weatherData.summary}\nTemperature now is ${weatherData.temperature} F\nProbability of ${weatherData.precipType} is ${weatherData.precipProbability * 100}%\n`)
+        
+        const result = `\nWeather for today: \n${weatherData.summary}\nTemperature now is ${weatherData.temperature} F\nProbability of ${weatherData.precipType} is ${weatherData.precipProbability * 100}%\n`
+        return callback(null, result)
     })
 }
 

@@ -1,7 +1,7 @@
 const { getGeoData } = require('./helpers/geoData')
 const { getWeather } = require('./helpers/weatherData')
 
-const location = ""
+const location = "Bankok"
 
 getGeoData(location, (err, geoData) => {
     if (err) return console.log(err.message)

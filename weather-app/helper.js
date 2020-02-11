@@ -68,3 +68,5 @@ function getWeather(coordinates, callback) {
 }
 
 module.exports = {getWeather, getGeoData}
+
+console.log()

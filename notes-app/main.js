@@ -1,7 +1,7 @@
 const help = require('./helper')
-const a = help.getNotes()
 const chalk = require('chalk');
 const yargs = require('yargs')
+
 const addOption1= {
     command: "add",
     description: " add Note ",
@@ -17,7 +17,6 @@ const addOption1= {
     },
     handler(args) {
         help.addNotes(args.title,args.body)
-
     }
 }
 const addOption2= {

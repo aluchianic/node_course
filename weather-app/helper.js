@@ -8,8 +8,7 @@ function getGeoData(location, callback) {
     request(path, (error, response, body) => {
 
             if (error) {
-                console.log('No internet connection!')
-                return error
+                return (error, callback)
             }
 
             try {
@@ -36,38 +35,35 @@ function getGeoData(location, callback) {
 }
 
 function getWeather(coordinates, callback) {
+    if(coordinates) {
+        const path = 'https://api.darksky.net/forecast/3ae54a1a23c82978490626b8cbb4e3cf/' + coordinates.long + ',' + coordinates.lat + '\n'
+        request(path, (error, response, body) => {
 
-    const path = 'https://api.darksky.net/forecast/3ae54a1a23c82978490626b8cbb4e3cf/' + coordinates.long + ',' + coordinates.lat + '\n'
-    request(path, (error, response, body) => {
-
-            if (error) {
-                console.log('No internet connection!')
-                return error
-            }
-
-            try {
-
-                const data = JSON.parse(body)
-
-
-                //console.dir(data, {depth: 5})
-                const weatherData = {
-                    summary: data.daily.data[0].summary,
-                    temperature: data.currently.temperature,
-                    precipProbability: data.daily.data[0].precipProbability
+                if (error) {
+                    return ('Incorrect location', null)
                 }
-                return callback(null, coordinates.location + "\n" +
-                    "Temperature is " + ((weatherData.temperature - 32) * 5 / 9) + " °C\n" +
-                    "Precip probability is " + (weatherData.precipProbability * 100) + " %\n" +
-                    weatherData.summary)
 
-            } catch (e) {
-                console.log('Incorrect location')
-                return e;
+                try {
+
+                    const data = JSON.parse(body)
+
+                    const weatherData = {
+                        location: coordinates.location,
+                        summary: data.daily.data[0].summary,
+                        temperature: data.currently.temperature,
+                        precipProbability: data.daily.data[0].precipProbability
+                    }
+                    return callback(null, weatherData)
+
+                } catch (e) {
+
+                    return (e, null)
+                }
+
             }
-
-        }
-    )
+        )
+    }
+    else return ('Incorrect', null)
 
 }
 
